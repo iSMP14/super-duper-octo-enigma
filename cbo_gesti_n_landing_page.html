@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBO Gestión | Boutique Financiera</title>
+    
+    <!-- Carga de Tipografía Premium (Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Carga de Iconos Minimalistas (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Carbón profundo en lugar de negro puro
+                        black: '#1a1a1a',
+                        // Tono papel/hueso en lugar de blanco puro
+                        white: '#f9f9f8',
+                        // Escala de grises cálida/neutra para complementar la elegancia
+                        gray: {
+                            50: '#f4f4f2',
+                            100: '#eaeae8',
+                            200: '#d5d5d2',
+                            300: '#bdbdba',
+                            400: '#a1a19d',
+                            500: '#858581',
+                            600: '#666663',
+                            700: '#4d4d4b',
+                            800: '#333331',
+                            900: '#1e1e1d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos minimalistas para el formulario (Modo Oscuro) */
+        .input-minimal {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #4d4d4b; /* Nuevo gray-700 */
+            padding: 1rem 0;
+            font-size: 1rem;
+            color: #f9f9f8; /* Nuevo white */
+            transition: all 0.3s ease;
+        }
+        .input-minimal:focus {
+            outline: none;
+            border-bottom: 2px solid #f9f9f8;
+        }
+        .input-minimal::placeholder {
+            color: #666663; /* Nuevo gray-600 */
+            font-weight: 300;
+        }
+        
+        /* Animación suave de aparición */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Clase base para elementos antes de animar */
+        .opacity-0-pre-anim {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans antialiased selection:bg-white selection:text-black">
+
+    <header id="main-header" class="fixed w-full top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gray-900 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Wordmark Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-3xl font-extrabold tracking-tighter text-white">CBO</span>
+                    <span class="text-3xl font-light tracking-widest text-gray-500 ml-1">GESTIÓN</span>
+                </div>
+                
+                <!-- Navegación Desktop -->
+                <nav class="hidden md:flex space-x-12 items-center">
+                    <a href="#servicios" class="text-xs font-semibold text-gray-400 hover:text-white transition-colors uppercase tracking-[0.15em]">Servicios</a>
+                    <a href="#metodologia" class="text-xs font-semibold text-gray-400 hover:text-white transition-colors uppercase tracking-[0.15em]">Metodología</a>
+                    <a href="#contacto" class="bg-white text-black px-8 py-3 rounded-none text-xs font-bold hover:bg-gray-200 transition-colors uppercase tracking-widest">Evaluar Proyecto</a>
+                </nav>
+
+                <!-- Menú Móvil Botón -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-gray-400 focus:outline-none transition-colors" aria-label="Abrir menú">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación Móvil (Oculta por defecto) -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-black border-b border-gray-800 absolute w-full left-0 top-24 shadow-lg">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#servicios" class="mobile-link text-sm font-semibold text-gray-400 hover:text-white uppercase tracking-widest py-2">Servicios</a>
+                <a href="#metodologia" class="mobile-link text-sm font-semibold text-gray-400 hover:text-white uppercase tracking-widest py-2">Metodología</a>
+                <a href="#contacto" class="mobile-link bg-white text-black px-6 py-3 text-center text-xs font-bold hover:bg-gray-200 transition-colors uppercase tracking-widest mt-4">Evaluar Proyecto</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="relative pt-48 pb-32 lg:pt-64 lg:pb-48 bg-black overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="max-w-4xl opacity-0-pre-anim animate-on-scroll">
+                <div class="inline-block border border-white px-4 py-1.5 mb-8">
+                    <p class="uppercase tracking-[0.2em] text-white font-bold text-xs">Brokerage Financiero Corporativo</p>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-[1.05] mb-8">
+                    Liquidez ágil.<br>
+                    <span class="text-gray-600">Respaldo sólido.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 font-light mb-12 max-w-2xl leading-relaxed">
+                    No somos un banco. Somos el atajo directo hacia tu financiamiento. Intermediamos y negociamos las mejores condiciones para tu empresa en tiempo récord.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#contacto" class="inline-flex justify-center items-center bg-white text-black px-10 py-5 text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors group">
+                        Iniciar Evaluación Gratuita
+                        <i class="ph ph-arrow-right ml-3 text-lg group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-32 bg-gray-900 border-t border-gray-800 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="mb-20 opacity-0-pre-anim animate-on-scroll">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Nuestras Gestiones.</h2>
+                <p class="text-gray-400 text-xl font-light max-w-2xl">Conectamos tu necesidad con la institución correcta. Evaluamos, estructuramos y aceleramos la aprobación.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                <!-- Servicio 1 -->
+                <div class="group cursor-pointer opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="border-b-2 border-white pb-6 mb-6">
+                        <i class="ph ph-arrows-left-right text-4xl text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Factoring</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">Transformamos tus cuentas por cobrar en flujo de caja inmediato. Negociamos con las mejores empresas de factoring para asegurar tasas competitivas.</p>
+                </div>
+                <!-- Servicio 2 -->
+                <div class="group cursor-pointer opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="border-b-2 border-white pb-6 mb-6">
+                        <i class="ph ph-chart-polar text-4xl text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Capital de Trabajo</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">Gestionamos líneas de liquidez para cubrir las operaciones diarias de tu negocio, pago a proveedores y necesidades a corto plazo.</p>
+                </div>
+                <!-- Servicio 3 -->
+                <div class="group cursor-pointer opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="border-b-2 border-white pb-6 mb-6">
+                        <i class="ph ph-car text-4xl text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Leasing & Leaseback</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">Financiamiento para adquisición de activos fijos, maquinaria o vehículos pesados sin inmovilizar tu capital de trabajo actual.</p>
+                </div>
+                <!-- Servicio 4 -->
+                <div class="group cursor-pointer opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="border-b-2 border-white pb-6 mb-6">
+                        <i class="ph ph-buildings text-4xl text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Créditos Comerciales</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">Intermediación bancaria para la estructuración de deudas y créditos orientados a proyectos de expansión a mediano y largo plazo.</p>
+                </div>
+                <!-- Servicio 5 -->
+                <div class="group cursor-pointer opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="border-b-2 border-white pb-6 mb-6">
+                        <i class="ph ph-house text-4xl text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Hipotecarios</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">Asesoría para la obtención de créditos con garantía hipotecaria, tanto para fines comerciales como corporativos.</p>
+                </div>
+                <!-- Servicio 6 -->
+                <div class="group cursor-pointer opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="border-b-2 border-white pb-6 mb-6">
+                        <i class="ph ph-shield-check text-4xl text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Garantía Estatal (FOGAPE)</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">Te ayudamos a estructurar y postular a créditos con respaldo del Estado, accediendo a condiciones y tasas preferenciales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="py-32 bg-white text-black scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="opacity-0-pre-anim animate-on-scroll">
+                    <h2 class="text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Por qué elegir a un broker financiero.</h2>
+                    <p class="text-gray-500 font-light leading-relaxed text-lg mb-12">
+                        Ir de banco en banco consume tiempo y no garantiza la mejor oferta. Nosotros analizamos tu perfil una sola vez y lo presentamos a nuestra red de instituciones con una estrategia clara.
+                    </p>
+                    
+                    <ul class="space-y-8">
+                        <li class="flex items-start">
+                            <span class="text-2xl font-bold mr-6 text-gray-300">01</span>
+                            <div>
+                                <h4 class="text-xl font-bold tracking-tight mb-2">Red de Contactos</h4>
+                                <p class="text-gray-500 font-light">Acceso directo a ejecutivos clave en la banca tradicional y fondos privados.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl font-bold mr-6 text-gray-300">02</span>
+                            <div>
+                                <h4 class="text-xl font-bold tracking-tight mb-2">Evaluación Objetiva</h4>
+                                <p class="text-gray-500 font-light">Armamos carpetas sólidas que maximizan tus probabilidades de aprobación.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl font-bold mr-6 text-gray-300">03</span>
+                            <div>
+                                <h4 class="text-xl font-bold tracking-tight mb-2">Foco en tu Negocio</h4>
+                                <p class="text-gray-500 font-light">Tú te encargas de hacer crecer tu empresa; nosotros de conseguir el capital.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 p-12 lg:p-20 aspect-square flex flex-col justify-center items-center text-center relative opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="absolute inset-0 border border-gray-200 m-4"></div>
+                    <h3 class="text-8xl lg:text-9xl font-black tracking-tighter text-black mb-4 relative z-10">100<span class="text-4xl text-gray-400">%</span></h3>
+                    <p class="uppercase tracking-[0.2em] text-sm font-bold text-gray-500 relative z-10">Orientados a resultados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-32 bg-black scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
+                
+                <div class="lg:col-span-2 opacity-0-pre-anim animate-on-scroll">
+                    <h2 class="text-4xl font-extrabold tracking-tighter mb-6">Hablemos de negocios.</h2>
+                    <p class="text-gray-400 font-light leading-relaxed mb-12">
+                        Déjanos tus datos corporativos. Un asesor experto revisará tu caso y te contactará para iniciar la gestión financiera.
+                    </p>
+                    <div class="space-y-4">
+                        <p class="text-sm font-bold uppercase tracking-widest text-white">Email</p>
+                        <p class="text-gray-400 font-light">contacto@cbogestion.cl</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 opacity-0-pre-anim animate-on-scroll" style="animation-delay: 0.2s;">
+                    <form id="leadForm" class="space-y-10">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div>
+                                <input type="text" id="nombre" class="input-minimal" placeholder="Nombre completo" required>
+                            </div>
+                            <div>
+                                <input type="text" id="empresa" class="input-minimal" placeholder="RUT Empresa" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div>
+                                <input type="email" id="email" class="input-minimal" placeholder="Correo electrónico corporativo" required>
+                            </div>
+                            <div>
+                                <input type="tel" id="telefono" class="input-minimal" placeholder="Teléfono móvil (WhatsApp)" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div>
+                                <select id="servicio" class="input-minimal text-gray-400" required>
+                                    <option value="" disabled selected class="text-gray-600">Servicio requerido...</option>
+                                    <option value="factoring" class="bg-black text-white">Factoring</option>
+                                    <option value="capital" class="bg-black text-white">Capital de Trabajo</option>
+                                    <option value="leasing" class="bg-black text-white">Leasing / Leaseback</option>
+                                    <option value="creditos" class="bg-black text-white">Créditos Comerciales</option>
+                                    <option value="hipotecarios" class="bg-black text-white">Hipotecarios</option>
+                                    <option value="fogape" class="bg-black text-white">Garantía FOGAPE</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="text" id="monto" class="input-minimal" placeholder="Monto estimado ($)" required>
+                            </div>
+                        </div>
+
+                        <div class="pt-8">
+                            <button type="submit" class="w-full bg-white text-black py-5 text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors flex justify-center items-center group">
+                                Enviar Solicitud de Evaluación
+                                <i class="ph ph-arrow-right ml-3 text-lg group-hover:translate-x-2 transition-transform"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center">
+            
+            <div class="flex-shrink-0 flex items-center mb-6 md:mb-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <span class="text-xl font-extrabold tracking-tighter text-white">CBO</span>
+                <span class="text-xl font-light tracking-widest text-gray-500 ml-1">GESTIÓN</span>
+            </div>
+
+            <div class="flex space-x-8 mb-6 md:mb-0">
+                <a href="#" class="text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Términos Legales</a>
+                <a href="#" class="text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Políticas de Privacidad</a>
+            </div>
+
+            <div class="text-xs font-light text-gray-500 tracking-wider">
+                &copy; 2026 CBO Gestión. Diseño por IGCartes.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interacciones JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Lógica del Menú Móvil
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const icon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                } else {
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
+                }
+            });
+
+            // Cerrar menú al hacer clic en un enlace
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                });
+            });
+
+            // 2. Efecto de borde en el Header al hacer scroll (Ajustado para Modo Oscuro)
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('border-gray-700');
+                    header.classList.remove('border-gray-900');
+                } else {
+                    header.classList.add('border-gray-900');
+                    header.classList.remove('border-gray-700');
+                }
+            });
+
+            // 3. Manejo del Formulario (Preparado para API)
+            const leadForm = document.getElementById('leadForm');
+            leadForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Aquí iría el código para enviar a un CRM (ej. Fetch API)
+                alert('Modo de prueba: En producción, esto se conectará al CRM y activará el flujo de WhatsApp.');
+                leadForm.reset();
+            });
+
+            // 4. Animaciones al hacer scroll (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        entry.target.classList.remove('opacity-0-pre-anim');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
